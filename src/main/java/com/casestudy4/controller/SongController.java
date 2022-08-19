@@ -58,6 +58,9 @@ public class SongController {
         if (!songOptional.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else {
+            if(song.getName().equals("") || song.getArtist().equals("") || song.getLyrics().equals("") || song.getCategories().isEmpty() || song.getPicture().equals("")){
+                return new ResponseEntity<>(new ResponseMessage("You have to fill out all required information!"),HttpStatus.OK);
+            }
             song.setId(songOptional.get().getId());
             songService.save(song);
             return new ResponseEntity<>(new ResponseMessage("Updated Song Successfully!"), HttpStatus.OK);
