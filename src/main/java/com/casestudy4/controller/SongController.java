@@ -94,7 +94,7 @@ public class SongController {
         return new ResponseEntity<>(songService.searchSong(keyword),HttpStatus.OK);
     }
 
-    @GetMapping("/search/all")
+    @GetMapping("/searchSong/all")
     public ResponseEntity<?> search(){
         return new ResponseEntity<>(songService.findAll(),HttpStatus.OK);
     }
