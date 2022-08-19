@@ -95,7 +95,7 @@ public class SongController {
     }
 
     @GetMapping("/searchOK/all")
-    public ResponseEntity<?> searchSongAll(){
+    public ResponseEntity<Iterable<Song>> searchSongAll(){
         return new ResponseEntity<>(songService.findAll(),HttpStatus.OK);
     }
 
