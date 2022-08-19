@@ -46,6 +46,8 @@ public class AuthController {
     @Autowired
     private JWTProvider jwtProvider;
 
+    final String strRegex= "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+
     @GetMapping("/hello")
     public ResponseEntity<?> hello(){
         return new ResponseEntity<>("hello",HttpStatus.OK);
@@ -64,6 +66,9 @@ public class AuthController {
         }
         if(!signUpForm.getPassword().equals(signUpForm.getRe_enterPassword())){
             return new ResponseEntity<>(new ResponseMessage("Re-enter incorrect password!"), HttpStatus.OK);
+        }
+        if (!signUpForm.getEmail().matches(strRegex)){
+            return new ResponseEntity<>(new ResponseMessage("Please fill in the correct email format!"), HttpStatus.OK);
         }
         User users = new User(signUpForm.getName(), signUpForm.getUsername(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getEmail());
         Set<String> strRoles = signUpForm.getRoles();
