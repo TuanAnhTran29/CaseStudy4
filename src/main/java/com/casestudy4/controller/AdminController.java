@@ -45,7 +45,7 @@ public class AdminController {
 
     @GetMapping("/user/{username}")
     public ResponseEntity<?> findByUsername(@PathVariable String username){
-        if (username.equals("all")){
+        if (username == "all"){
             return new ResponseEntity<>(userService.findAllRoleUser(),HttpStatus.OK);
         }
         return new ResponseEntity<>(userService.findUserByUsername(username),HttpStatus.OK);
