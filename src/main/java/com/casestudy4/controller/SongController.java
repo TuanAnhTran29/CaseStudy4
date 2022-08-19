@@ -91,11 +91,12 @@ public class SongController {
 
     @GetMapping("/search/{keyword}")
     public ResponseEntity<?> searchSong(@PathVariable String keyword){
-        System.out.println(keyword);
-        if(keyword.equals("")){
-            return new ResponseEntity<>(songService.findAll(),HttpStatus.OK);
-        }
         return new ResponseEntity<>(songService.searchSong(keyword),HttpStatus.OK);
+    }
+
+    @GetMapping("/search/all")
+    public ResponseEntity<?> search(){
+        return new ResponseEntity<>(songService.findAll(),HttpStatus.OK);
     }
 
 }
