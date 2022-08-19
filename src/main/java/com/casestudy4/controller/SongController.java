@@ -43,6 +43,9 @@ public class SongController {
 
     @PostMapping
     public ResponseEntity<?> createSong(@RequestBody Song song){
+        if(song.getName().equals("") || song.getArtist().equals("") || song.getCategories().isEmpty() || song.getPath().equals("")){
+            return new ResponseEntity<>(new ResponseMessage("You have to fill out all the required information!"),HttpStatus.OK);
+        }
         for(Song s : songService.findAll()){
             if(s.getName().equals(song.getName()) && s.getArtist().equals(song.getArtist()) && s.getLyrics().equals(song.getLyrics())){
                 return new ResponseEntity<>(new ResponseMessage("You already have this song!"), HttpStatus.OK);
