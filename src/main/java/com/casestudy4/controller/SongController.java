@@ -43,7 +43,7 @@ public class SongController {
 
     @PostMapping
     public ResponseEntity<?> createSong(@RequestBody Song song){
-        if(song.getName().equals("") || song.getArtist().equals("") || song.getCategories().isEmpty() || song.getPath().equals("")){
+        if(song.getName().equals("") || song.getArtist().equals("") || song.getLyrics().equals("") || song.getCategories().isEmpty() || song.getPicture().equals("")){
             return new ResponseEntity<>(new ResponseMessage("You have to fill out all the required information!"),HttpStatus.OK);
         }
         for(Song s : songService.findAll()){
