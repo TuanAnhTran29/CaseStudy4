@@ -100,4 +100,20 @@ public class SongController {
         return new ResponseEntity<>(songService.searchSong(keyword),HttpStatus.OK);
     }
 
+    @GetMapping("/backward/{index}")
+    public ResponseEntity<?> backwardSong(@PathVariable int index){
+        Iterable<Song> songs= songService.findAll();
+        List<Song> songList= new ArrayList<>();
+        for (Song s:songs) {
+            songList.add(s);
+        }
+        if(index > 0){
+            index--;
+            return new ResponseEntity<>(songList.get(index).getPath(),HttpStatus.OK);
+        }else {
+            index= 0;
+            return new ResponseEntity<>(songList.get(index).getPath(),HttpStatus.OK);
+        }
+    }
+
 }
