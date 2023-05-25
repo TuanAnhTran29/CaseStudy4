@@ -51,9 +51,6 @@ public class User {
     Set<Role> roles= new HashSet<>();
 
 
-//    @JoinTable(name = "user_song", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "songId") )
-
-
     public User(String name, String username, String email, String password, Set<Role> roles) {
         this.name = name;
         this.username = username;
